@@ -1,12 +1,11 @@
-﻿{
+{
   "name": "rimdice",
-  "version": "1.0.0",
-  "description": "A great discord bot",
+  "version": "0.0.1",
+  "description": "A cool discord bot",
   "main": "bot.js",
   "author": "OliveWizard",
   "license": "MIT",
-  "dependencies":
-  {
+  "dependencies": {
     "discord.js": "^12.5.1"
   }
 }

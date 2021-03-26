@@ -1,4 +1,4 @@
-﻿const Discord = require('discord.js'); //Библиотека
+const Discord = require('discord.js'); //Библиотека
 const client = new Discord.Client(); //Сам бот
 const prefix = 'r'; //Префикс команды
 
