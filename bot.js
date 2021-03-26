@@ -277,5 +277,5 @@ function rage(d)
 function time()
 {
   roll_time = new Date;
-  return 'Время ' + roll_time.getHours() + 3 + ':' + roll_time.getMinutes() + ':' +roll_time.getSeconds() + ' ||';
+  return 'Время ' + Number(roll_time.getHours() + 3) + ':' + roll_time.getMinutes() + ':' +roll_time.getSeconds() + ' ||';
 }
