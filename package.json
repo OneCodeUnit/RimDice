@@ -1,14 +1,12 @@
-{
+﻿{
   "name": "rimdice",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "version": "1.0.0",
+  "description": "A great discord bot",
+  "main": "bot.js",
   "author": "OliveWizard",
-  "license": "ISC",
-  "dependencies": {
+  "license": "MIT",
+  "dependencies":
+  {
     "discord.js": "^12.5.1"
   }
 }
