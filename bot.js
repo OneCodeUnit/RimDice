@@ -4,6 +4,7 @@ const prefix = 'r'; //Префикс команды
 
 let remSuccess = 0;
 let remSkill = 0;
+const releaseWord = 'Выпало ';
 
 client.on('ready', () => //Он запустился
 {
@@ -29,17 +30,21 @@ client.on('message', msg => //Он читает
   //Команды
   switch (orderCommand)
   {
+    case 'roll':
     case 'r':
-      msg.channel.send('Выпало ' + Dice(orderArgument));
+      msg.channel.send(releaseWord + Dice(orderArgument));
       break;
+    case 'rage':
     case 'rp':
       msg.channel.send(msg.author.username + rage(orderArgument));
       break;
+    case 'rdice':
     case 'rd':
-      msg.channel.send('Выпало ' + check100(orderArgument));
+      msg.channel.send(releaseWord + check100(orderArgument));
       break;
+    case 'rfight':
     case 'rf':
-      msg.channel.send('Выпало ' + fight100(orderArgument));
+      msg.channel.send(releaseWord + fight100(orderArgument));
       break;
   }
 });
@@ -47,10 +52,10 @@ client.on('message', msg => //Он читает
 client.login(process.env.BOT_TOKEN); //Он регистрируется в сети
 
 //Функции
+
 //Бросок любого куба
 function Dice(d)
 {
-  const min = 1;
   let bonus = 0;
   //Определение модификатора
   if (d.includes('+'))
@@ -69,9 +74,7 @@ function Dice(d)
   if (d[0] == 'd')
   {
     d = d.slice(1);
-    let max = Math.floor(d);
-    d = Math.floor(Math.random() * (max - min + 1)) + min + bonus;
-    return d;
+    return roll(d, bonus);
   }
   //Много кубов
   else
@@ -83,13 +86,11 @@ function Dice(d)
     let tempNumber;
     for (let i = 0; i < count; i++)
     {
-      let max = Math.floor(d);
-      tempNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      tempNumber = roll(d, 0);
       resultNumber += tempNumber;
       resultString += tempNumber + ', ';
     }
-    d = (resultNumber + bonus) + '. (Броски: ' + resultString.slice(0, -2) + ')';
-    return d;
+    return (resultNumber + bonus) + '. (Броски: ' + resultString.slice(0, -2) + ')';
   }
 }
 
@@ -97,19 +98,19 @@ function Dice(d)
 function check100(d)
 {
   //Бросок
-  let d100 = Dice('d100');
+  let d100 = roll(100, 0);
   //Модификаторы
-  let modifier = 0;
+  let bonus = 0;
   if (d.includes('+'))
   {
-    modifier = d.slice(d.indexOf('+') + 1);
-    modifier = Number(modifier);
+    bonus = d.slice(d.indexOf('+') + 1);
+    bonus = Number(bonus);
     d = d.slice(0, d.indexOf('+'));
   }
   else if (d.includes('-'))
   {
-    modifier = d.slice(d.indexOf('-') + 1);
-    modifier = -Number(modifier);
+    bonus = d.slice(d.indexOf('-') + 1);
+    bonus = -Number(bonus);
     d = d.slice(0, d.indexOf('-'));
   }
   //Подсчёт контрброска
@@ -118,7 +119,7 @@ function check100(d)
   remSkill = Math.floor(number2 / 2);
   number1 *= 5;
   number2 *= 5;
-  d = number1 + number2 + modifier;
+  d = number1 + number2 + bonus;
   remSuccess = Math.floor((d - d100) / 10);
   //Подготовка сообщения
   let word;
@@ -182,7 +183,7 @@ function fight100(d)
   //Бросок
   for (let i = 0; i < count; i++)
   {
-    dices[i] = Dice('d' + d);
+    dices[i] = roll(d, 0);
   }
   //Отсортированный массив бросков
   dices.sort((a, b) => a - b);
@@ -209,8 +210,8 @@ function fight100(d)
 //Текст
 function rage(d)
 {
-  let rdice = Dice('d20');
-  let vdice = Dice('d3');
+  let rdice = roll(20, 0);
+  let vdice = roll(3, 0);
   if (rdice > 17)
   {
     if (vdice == 1)
@@ -276,6 +277,12 @@ function rage(d)
 //Время для логов
 function time()
 {
-  roll_time = new Date;
-  return 'Время ' + Number(roll_time.getHours() + 3) + ':' + roll_time.getMinutes() + ':' +roll_time.getSeconds() + ' ||';
+  let roll_time = new Date;
+  return 'Время ' + Number(roll_time.getHours() + 3) + ':' + roll_time.getMinutes() + ':' +roll_time.getSeconds() + '  ||  ';
+}
+
+//Генерация числа
+function roll(dice, modifier)
+{
+  return Math.floor(Math.random() * (Math.floor(dice) - 1 + 1)) + 1 + modifier;
 }
