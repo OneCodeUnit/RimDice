@@ -155,13 +155,13 @@ function check100(d)
   }
   //Финальное сообщение
   let check_message = d100 + ' против ' + d + '. (';
-  if (d100 <= 5)
+  if ((d100 <= 5) && (d100 >= 0))
   {
-    check_message += '**Крит!** ' + word;
+    check_message += '**Крит успех!** ' + word;
   }
-  else if (d100 >= 96)
+  else if ((d100 >= 96) && (d100 <= 100))
   {
-    check_message += '**Крит!** ' + word;
+    check_message += '**Крит провал!** ' + word;
   }
   else if (d100 <= d)
   {
