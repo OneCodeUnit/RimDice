@@ -126,7 +126,7 @@ function check100(d)
   //Для успехов
   if (remSuccess == 0)
   {
-    word = ' просто успех)';
+    word = 'Просто успех)';
   }
   else if (remSuccess == 1)
   {
