@@ -9,8 +9,9 @@ const releaseWord = 'Выпало ';
 client.on('ready', () => //Он запустился
 {
   console.log(time() + client.user.username + ' готов служить!');
-  let defaultChannel = client.channels.fetch('809723944571109386');
-  defaultChannel.send('Я запустился');
+  //let channel = client.channels.fetch('809723944571109386');
+  let channel = client.guild.channels.cache.find(ch => ch.name === 'броски');
+  channel.send('Я запустился');
 });
 
 client.on('guildMemberAdd', member => //Кто-то присоединился
