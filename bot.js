@@ -5,13 +5,12 @@ const prefix = 'r'; //Префикс команды
 let remSuccess = 0;
 let remSkill = 0;
 const releaseWord = 'Выпало ';
+const channelBot = client.channels.cache.get('809723944571109386'); //Канал для бота
+const channelUsers = client.channels.cache.get('809138661232345129'); //Канал общего чата
 
 client.on('ready', () => //Он запустился
 {
   console.log(time() + client.user.username + ' готов служить!');
-  //let channel = client.channels.fetch('809723944571109386');
-  let channel = client.guild.channels.cache.find(ch => ch.name === 'броски');
-  channel.send('Я запустился');
 });
 
 client.on('guildMemberAdd', member => //Кто-то присоединился
@@ -22,6 +21,7 @@ client.on('guildMemberAdd', member => //Кто-то присоединился
 client.on('guildMemberRemove', member => //Кто-то ушёл
 {
   console.log(time() + member.user.username + ' ушёл от нас!');
+  channelUsers.send('Пока, ' + member.user.username);
 });
 
 client.on('message', msg => //Он читает
