@@ -1,4 +1,5 @@
 const Discord = require('discord.js'); //Библиотека
+const token = require("./token.json");
 const client = new Discord.Client(); //Сам бот
 const prefix = 'r'; //Префикс команды
 
@@ -52,7 +53,7 @@ client.on('message', msg => //Он читает
   }
 });
 
-client.login(process.env.BOT_TOKEN); //Он регистрируется в сети
+client.login(token.TOKEN); //Он регистрируется в сети
 
 //Функции
 
@@ -281,7 +282,7 @@ function rage(d)
 function time()
 {
   let roll_time = new Date;
-  return 'Время ' + Number(roll_time.getHours() + 3) + ':' + roll_time.getMinutes() + ':' +roll_time.getSeconds() + '  ||  ';
+  return 'Время ' + roll_time.getHours() + ':' + roll_time.getMinutes() + ':' + roll_time.getSeconds() + '  ||  ';
 }
 
 //Генерация числа
