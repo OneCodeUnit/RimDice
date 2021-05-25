@@ -6,8 +6,6 @@ const prefix = 'r'; //Префикс команды
 let remSuccess = 0;
 let remSkill = 0;
 const releaseWord = 'Выпало ';
-const channelBot = client.channels.cache.get('809723944571109386'); //Канал для бота
-const channelUsers = client.channels.cache.get('809138661232345129'); //Канал общего чата
 
 client.on('ready', () => //Он запустился
 {
@@ -22,7 +20,6 @@ client.on('guildMemberAdd', member => //Кто-то присоединился
 client.on('guildMemberRemove', member => //Кто-то ушёл
 {
   console.log(time() + member.user.username + ' ушёл от нас!');
-  channelUsers.send('Пока, ' + member.user.username);
 });
 
 client.on('message', msg => //Он читает
@@ -282,7 +279,7 @@ function rage(d)
 function time()
 {
   let roll_time = new Date;
-  return 'Время ' + roll_time.getHours() + ':' + roll_time.getMinutes() + ':' + roll_time.getSeconds() + '  ||  ';
+  return 'Время ' + roll_time.getDate() + ' числа в ' + roll_time.getHours() + ':' + roll_time.getMinutes() + ':' + roll_time.getSeconds() + '  ||  ';
 }
 
 //Генерация числа
