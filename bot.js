@@ -279,7 +279,7 @@ function rage(d)
 function time()
 {
   let roll_time = new Date;
-  return 'Время ' + roll_time.getDate() + ' числа в ' + roll_time.getHours() + ':' + roll_time.getMinutes() + ':' + roll_time.getSeconds() + '  ||  ';
+  return roll_time.getDate() + ' числа в ' + roll_time.getHours() + ':' + roll_time.getMinutes() + ':' + roll_time.getSeconds() + '  ||  ';
 }
 
 //Генерация числа
